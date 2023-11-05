@@ -10,20 +10,12 @@
     <title>Calcul</title>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <style>
-        /* #mainTable > *{
-            border-color: #DFCCFB!important;
-        } */
         .btn,textarea {
             border: 1px solid #393E46!important;
         }
     </style>
     <script>
         $(document).ready(function(){
-            var array = ['item1', 'item2', 'item3'];
-var removedItem = array.pop();
-
-console.log(removedItem);
-console.log(array);
             $("span.btn").each(function(){
                 var showSection = $("textarea#showSection")
                 var result = $("textarea#result")
@@ -67,8 +59,6 @@ console.log(array);
                         string2.pop()
                         newValue = string2.join('')
                     }
-                    console.log($(this).text() === "")
-
                     showSection.val(newValue)
                 });
             })
