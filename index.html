@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Calcul</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <style>
+        /* #mainTable > *{
+            border-color: #DFCCFB!important;
+        } */
+        .btn,textarea {
+            border: 1px solid #393E46!important;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            var array = ['item1', 'item2', 'item3'];
+var removedItem = array.pop();
+
+console.log(removedItem);
+console.log(array);
+            $("span.btn").each(function(){
+                var showSection = $("textarea#showSection")
+                var result = $("textarea#result")
+                
+                $(this).on('click', function() {
+                    value = showSection.val()
+                    var newValue = value + $(this).text()
+                    if($(this).text() === "C"){
+                        newValue = ""
+                    }
+                    if($(this).text() === "( )"){
+                        var string1 = value.split('')
+                        for(i=0;i<string1.length;i++){
+                            if(string1[i]!="("){
+                                newValue = value + "("
+                            }else if(string1[i]!=")"){
+                                newValue = value + ")"
+                            }
+                        }
+                        for(i=0;i<string1.length;i++){
+                            if(string1[i]=="("){
+                                newValue = value + ")"
+                            }else if(string1[i]==")"){
+                                newValue = value + "("
+                            }
+                        }
+                    }
+                    if($(this).text() === "="){
+                        try{
+                            if(value){
+                                newValue += eval(value.trim())
+                            }else{
+                                newValue=""
+                            }
+                        }catch(ReferenceError){
+                            newValue= ""
+                        }
+                    }
+                    if($(this).text() === ""){
+                        var string2 = value.split('')
+                        string2.pop()
+                        newValue = string2.join('')
+                    }
+                    console.log($(this).text() === "")
+
+                    showSection.val(newValue)
+                });
+            })
+        })
+    </script>
+</head>
+    <body style="background-color: #222831;height: 100vh!important;" class="d-flex justify-content-center align-items-center">
+        <div class="text-light rounded-2 p-2" style="background-color: #00ADB5  ;border: #393E46 1px solid;">
+            <table class="w-100">
+                <thead>
+                    <tr>
+                        <td colspan="4">
+                            <textarea  class="form-control mb-4 fs-2" id="showSection"> </textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <span class="w-50 btn btn-light float-end mb-2 w-25 bi bi-eraser-fill"></span>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="table">
+                    <tr>
+                        <td>
+                            <span class="btn btn-outline-danger w-100">C</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">( )</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">%</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">/</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="btn btn-light w-100">7</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">8</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">9</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="btn btn-light w-100">4</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">5</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">6</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">-</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="btn btn-light w-100">1</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">2</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">3</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">+</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="table">
+                    <tr>
+                        <td>
+                            <span class="btn btn-light w-100">0</span>
+                        </td>
+                        <td>
+                            <span class="btn btn-light w-100">.</span>
+                        </td>
+                        <td colspan="2">
+                            <span class="btn btn-outline-success w-100">=</span>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </body>
+</html>
